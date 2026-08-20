@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Hub — Pathophysiology &amp; Pharmacology, one system at a time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Practice Hub — dark theme ===== */
+:root{
+  --bg:#0A1420;
+  --bg-2:#0D1B2A;
+  --panel:#122435;
+  --panel-2:#16304A;
+  --line:#20415F;
+  --text:#EAF3FA;
+  --muted:#7FA0C0;
+  --muted-dim:#5A7891;
+  --o2:#4FD1C5;
+  --o2-dim:#2E7A72;
+  --co2:#E8926B;
+  --amber:#F2C14E;
+  --violet:#8C87E8;
+  --radius:16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(900px 500px at 12% -8%, rgba(79,209,197,0.10), transparent 55%),
+    radial-gradient(800px 600px at 100% 10%, rgba(140,135,232,0.08), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Public Sans',sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+
+/* ---------- Nav ---------- */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1080px;margin:0 auto;padding:24px 24px 0;
+}
+.nav .brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:16px;color:var(--text);
+  text-decoration:none;
+}
+.nav .brand .mark{
+  width:30px;height:30px;border-radius:9px;
+  background:linear-gradient(135deg,var(--o2),var(--violet));
+  display:flex;align-items:center;justify-content:center;
+}
+.nav .brand .mark svg{width:16px;height:16px;stroke:#052622;}
+.nav-links{display:flex;align-items:center;gap:26px;}
+.nav-links a{
+  font-size:13.5px;font-weight:500;color:var(--muted);
+  text-decoration:none;transition:color .15s ease;
+}
+.nav-links a:hover{color:var(--text);}
+.nav-links a.cta{
+  background:linear-gradient(135deg,var(--o2),#3FB8AC);
+  color:#052622;
+  padding:9px 18px;border-radius:999px;font-weight:700;
+}
+.nav-links a.cta:hover{ box-shadow:0 6px 18px rgba(79,209,197,0.28); }
+.crumb{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted-dim); }
+.crumb a{ color:var(--muted); text-decoration:none; }
+.crumb a:hover{ color:var(--o2); }
+
+/* ---------- Signature: breathing waveform ---------- */
+.breath-wrap{
+  position:relative;height:56px;margin:26px auto 6px;max-width:520px;overflow:hidden;
+}
+.breath-wrap svg{width:100%;height:100%;display:block;}
+.breath-path{
+  fill:none;stroke:var(--o2);stroke-width:2.2;stroke-linecap:round;
+  filter:drop-shadow(0 0 6px rgba(79,209,197,0.5));
+  transform-origin:center;animation:breathe 4.2s ease-in-out infinite;
+}
+@keyframes breathe{ 0%,100%{transform:scaleY(0.65);} 50%{transform:scaleY(1.15);} }
+
+/* ---------- Hero ---------- */
+.hero{ max-width:740px;margin:0 auto;padding:14px 24px 30px;text-align:center; }
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--o2);margin-bottom:14px;font-weight:600;
+}
+h1.headline{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(28px,5vw,44px);line-height:1.16;letter-spacing:-0.01em;
+  margin:0 0 18px;
+}
+h1.headline .accent{
+  background:linear-gradient(135deg,var(--o2),var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .lede{
+  color:var(--muted);font-size:16px;line-height:1.65;max-width:540px;margin:0 auto 32px;
+}
+.hero-ctas{ display:flex;gap:12px;justify-content:center;flex-wrap:wrap; }
+.btn{
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;
+  border-radius:10px;padding:13px 24px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  border:1px solid transparent;
+}
+.btn-primary{ background:linear-gradient(135deg,var(--o2),#3FB8AC); color:#052622; }
+.btn-primary:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(79,209,197,0.28); }
+.btn-secondary{ background:transparent; color:var(--text); border-color:var(--line); }
+.btn-secondary:hover{ border-color:var(--o2); color:var(--o2); }
+
+/* ---------- Stats strip ---------- */
+.stats-strip{
+  display:flex;justify-content:center;gap:40px;max-width:740px;margin:0 auto;
+  padding:8px 24px 0;flex-wrap:wrap;
+}
+.stat{ text-align:center; }
+.stat .n{ font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;color:var(--o2); }
+.stat .l{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.06em;
+  text-transform:uppercase;color:var(--muted-dim);margin-top:3px;
+}
+
+/* ---------- Tracks section ---------- */
+.tracks{ max-width:960px;margin:60px auto 0;padding:0 24px; }
+.tracks-head{ text-align:center;margin-bottom:28px; }
+.tracks-head h2{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;margin:0;
+}
+.track-grid{ display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px; }
+.track-card{
+  position:relative;
+  background:linear-gradient(180deg,var(--panel),var(--bg-2));
+  border:1px solid var(--line);border-radius:20px;padding:30px 26px;
+  text-decoration:none;color:inherit;display:block;
+  transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.track-card:hover{ transform:translateY(-3px); border-color:var(--accent,var(--o2)); box-shadow:0 14px 34px rgba(0,0,0,0.35); }
+.track-card .icon{
+  width:48px;height:48px;border-radius:13px;background:var(--accent,var(--o2));
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.track-card .icon svg{ width:23px;height:23px;stroke:#052622; }
+.track-card h3{ font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;margin:0 0 8px; }
+.track-card p{ color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 20px; }
+.track-card .foot{ display:flex;align-items:center;justify-content:space-between; }
+.track-card .count{ font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-dim); }
+.track-card .go{ font-weight:700;font-size:13px;color:var(--accent,var(--o2));display:flex;align-items:center;gap:5px; }
+.track-card.patho{ --accent:#4FD1C5; }
+.track-card.pharm{ --accent:#8C87E8; }
+
+/* ---------- How it works teaser ---------- */
+.how-teaser{ max-width:960px;margin:70px auto 0;padding:0 24px; }
+.how-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;
+  border-top:1px solid var(--line);padding-top:34px;
+}
+.how-item .num{ font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--o2);margin-bottom:8px; }
+.how-item h4{ font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;margin:0 0 7px; }
+.how-item p{ color:var(--muted);font-size:13px;line-height:1.6;margin:0; }
+
+footer{
+  text-align:center;color:var(--muted-dim);font-size:11.5px;font-family:'JetBrains Mono',monospace;
+  padding:60px 20px 46px;border-top:1px solid var(--line);margin-top:70px;
+}
+
+/* ---------- Category / module list pages ---------- */
+.cat-hero{ max-width:680px;margin:0 auto;padding:36px 24px 6px;text-align:center; }
+.cat-hero .eyebrow{ font-weight:700; }
+.cat-hero h1{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(24px,4.2vw,32px);margin:0 0 12px;
+}
+.cat-hero p{ color:var(--muted);font-size:14.5px;line-height:1.6;max-width:500px;margin:0 auto; }
+
+.module-list{ max-width:700px;margin:34px auto 80px;padding:0 24px;display:flex;flex-direction:column;gap:12px; }
+.section-label{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--muted-dim);margin:26px 0 2px;
+}
+.section-label:first-child{ margin-top:6px; }
+.module-card{
+  display:flex;align-items:center;gap:16px;
+  background:rgba(22,48,74,0.35);border:1px solid var(--line);border-radius:14px;padding:17px 20px;
+  text-decoration:none;color:inherit;
+  transition:transform .13s ease, border-color .13s ease, background .13s ease;
+}
+a.module-card:hover{ transform:translateY(-2px); border-color:var(--accent,var(--o2)); background:rgba(22,48,74,0.55); }
+.module-card.disabled{ opacity:0.55;cursor:default; }
+.module-card .swatch{
+  flex:0 0 auto;width:42px;height:42px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;
+  background:color-mix(in srgb, var(--accent,#7FA0C0) 18%, transparent);
+  color:var(--accent,#7FA0C0);
+  border:1px solid color-mix(in srgb, var(--accent,#7FA0C0) 40%, transparent);
+}
+.module-card .body{ flex:1;min-width:0; }
+.module-card .top-line{ display:flex;align-items:center;gap:9px;margin-bottom:3px;flex-wrap:wrap; }
+.module-card h3{ font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15.5px;margin:0; }
+.module-card .desc{ color:var(--muted);font-size:12.5px;line-height:1.5;margin:0; }
+.status{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;flex:0 0 auto;font-weight:600;
+}
+.status.live{ color:#052622;background:var(--o2); }
+.status.soon{ color:var(--muted-dim);background:var(--panel-2);border:1px solid var(--line); }
+.module-card .meta{
+  flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-dim);
+  text-align:right;white-space:nowrap;
+}
+.module-card .arrow{ flex:0 0 auto;color:var(--muted-dim);font-size:16px;transition:transform .13s ease, color .13s ease; }
+a.module-card:hover .arrow{ color:var(--accent,var(--o2)); transform:translateX(2px); }
+
+/* ---------- About page ---------- */
+.about-body{ max-width:660px;margin:0 auto;padding:20px 24px 80px; }
+.about-body h1{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(26px,4.4vw,36px);margin:0 0 16px;
+}
+.about-body .lede{ color:var(--muted);font-size:15.5px;line-height:1.7;margin:0 0 40px; }
+.feature-block{ display:flex;gap:16px;padding:24px 0;border-top:1px solid var(--line); }
+.feature-block .fnum{
+  flex:0 0 auto;width:34px;height:34px;border-radius:9px;
+  background:rgba(79,209,197,0.12);color:var(--o2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;
+}
+.feature-block h3{ font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;margin:0 0 6px; }
+.feature-block p{ color:var(--muted);font-size:13.5px;line-height:1.65;margin:0; }
+.about-cta{ margin-top:44px;padding-top:36px;border-top:1px solid var(--line);text-align:center; }
+.about-cta p{ color:var(--muted);font-size:14px;margin:0 0 16px; }
+
+@media (max-width:640px){
+  .nav-links{ gap:14px; }
+  .nav-links a.cta{ padding:8px 14px; }
+}
+
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v7M12 10c-3 0-5 2.2-5 5v3M12 10c3 0 5 2.2 5 5v3M7 21h10" stroke="#052622" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+      Practice Hub
+    </a>
+    <div class="nav-links">
+      <a href="pathophysiology.html">Pathophysiology</a>
+      <a href="pharmacology.html">Pharmacology</a>
+      <a href="about.html">How this works</a>
+      <a href="#tracks" class="cta">Browse modules</a>
+    </div>
+  </nav>
+
+  <div class="breath-wrap">
+    <svg viewBox="0 0 520 56" preserveAspectRatio="none">
+      <path class="breath-path" d="M0,28 L55,28 L70,9 L84,47 L98,28 L150,28 L164,12 L178,44 L192,28 L244,28 L258,9 L272,47 L286,28 L338,28 L352,12 L366,44 L380,28 L432,28 L446,9 L460,47 L474,28 L520,28"/>
+    </svg>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Applied practice for pharmacy students</div>
+    <h1 class="headline">Learn pathophysiology and pharmacology,<br><span class="accent">one system at a time.</span></h1>
+    <p class="lede">Interactive practice modules built for my students — applied questions, immediate feedback, and explanations that connect mechanism to clinical presentation.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#tracks">
+        Browse modules
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn btn-secondary" href="about.html">How this works</a>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat"><div class="n">2</div><div class="l">Tracks</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Live module</div></div>
+    <div class="stat"><div class="n">39</div><div class="l">Practice items</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">Systems planned</div></div>
+  </div>
+
+  <div class="tracks" id="tracks">
+    <div class="tracks-head">
+      <div class="eyebrow">Choose a track</div>
+      <h2>Two ways to study the same disorder</h2>
+    </div>
+    <div class="track-grid">
+
+      <a class="track-card patho" href="pathophysiology.html">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-9C.8 8.1 2.4 4.5 6 4.5c2 0 3.3 1.1 4 2.2C10.7 5.6 12 4.5 14 4.5c3.6 0 5.2 3.6 3.5 7.5C15 16.65 12 21 12 21z" stroke="#052622" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Pathophysiology</h3>
+        <p>How each disorder actually develops — mechanisms, disease progression, and the clinical &amp; lab findings that follow from them.</p>
+        <div class="foot">
+          <span class="count">1 module live · 2 in progress</span>
+          <span class="go">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a class="track-card pharm" href="pharmacology.html">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="#052622" stroke-width="1.7"/><path d="M3 12h18M12 3v18" stroke="#052622" stroke-width="1.7"/></svg>
+        </div>
+        <h3>Pharmacology</h3>
+        <p>How the drugs work — mechanisms of action, drug classes, and treatment selection, mapped to each pathophysiology module.</p>
+        <div class="foot">
+          <span class="count">3 in progress</span>
+          <span class="go">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="how-teaser">
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="num">01</div>
+        <h4>Pick a system</h4>
+        <p>Choose which sections to include and how many questions you want — a quick review or a full pass.</p>
+      </div>
+      <div class="how-item">
+        <div class="num">02</div>
+        <h4>Work through it</h4>
+        <p>A wrong answer doesn't hand you the fix — you get a hint first, then the option to reveal it.</p>
+      </div>
+      <div class="how-item">
+        <div class="num">03</div>
+        <h4>See what stuck</h4>
+        <p>A score breakdown by section, plus a full review of every question and why the correct answer is correct.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>Practice Hub · internal course resource</footer>
+
+</body>
+</html>
